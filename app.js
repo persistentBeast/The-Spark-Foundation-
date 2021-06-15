@@ -10,7 +10,7 @@ const Transaction=require('./models/transactions');
 const methodOverride=require('method-override');
 const appError=require('./utilities/ErrorHandling')
 const dotenv = require('dotenv');
-const dbUrl=process.env.db_url;
+const dbUrl=process.env.db_url || 'mongodb://localhost:27017/Spark-Bank';
 // 'mongodb://localhost:27017/Spark-Bank'
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
