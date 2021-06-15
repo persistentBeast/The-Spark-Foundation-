@@ -106,6 +106,8 @@ app.use((err, req, res, next)=>{
     res.send("<h1> &#9888; Something Went Wrong !!!</h1>");
 })
 
-app.listen(3000, ()=>{
+const port= process.env.PORT || 3000;
+
+app.listen(port, ()=>{
     console.log("Its Live");
 })
