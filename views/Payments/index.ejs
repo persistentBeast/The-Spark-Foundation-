@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transfer Funds</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <style>
+        .hide{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white sticky-top shadow-lg">
+        <div class="container-fluid">
+             <span class="navbar-brand mb-0 h1">The Bank of TSF</span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/customers">Customers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/transactionHistory">Recent Transactions</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container shadow p-3 mt-5 bg-body rounded">
+
+        <div class="row text-center">
+            <h2> Payments</h2>
+        </div>
+        <form class="row g-3 needs-validation" action="/transferfunds/<%=customer._id%>?_method=PUT" method="POST" novalidate>
+            <div class="col-12">
+              <label for="reciever" class="form-label">Transfer To :</label>
+              <input type="text" class="form-control" id="rec" name="reciever" required placeholder="Enter 8 digit account number of reciever">
+            </div>
+            <div class="col-12">
+                <label for="amount" class="form-label">Amount : </label>
+                <input type="text" class="form-control" id="amt" name="amount" required placeholder="Enter amount to be transfered">
+            </div>
+            
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary">Make Payment</button>
+            </div>
+        </form>
+
+        <div id="alert-div" class="alert alert-danger mt-4 hide" role="alert">
+            <h4 class="alert-heading mb-2"> Incorrect/Invalid Account Number or Amount Value</h4>
+            <p>Account number is a 8-digit unique number.</p>
+            <p>Amount should be positive number.</p>
+            
+            <hr>
+        </div>
+          
+
+   
+
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+    <script>
+
+
+        (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            
+        
+            var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+                let amount_input=document.querySelectorAll('#amt');
+                let reciever_account=document.querySelectorAll('#rec');
+                let amount=amount_input[0].value;
+                let reciever_account_num=reciever_account[0].value;
+                let ck;
+                let alert_msg=document.getElementById('alert-div');
+                ck=(!isNaN(Number(amount)) && Number(amount)>0);
+                ck=ck && (!isNaN(Number(reciever_account_num)) && Number(reciever_account_num)>0 && reciever_account_num.length===8);
+                    if (!ck) {
+                    event.preventDefault();
+                    event.stopPropagation();                   
+                    alert_msg.classList.remove('hide');
+                }else{
+                    form.classList.add('was-validated');
+                    alert_msg.classList.add('hide');
+                }
+            }, false);
+            });
+        }, false);
+        })();        
+
+
+    </script>
+    
+</body>
+</html>

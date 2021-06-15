@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Customer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white sticky-top shadow-lg">
+        <div class="container-fluid">
+             <span class="navbar-brand mb-0 h1">The Bank of TSF</span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/customers">Customers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/transactionHistory">Recent Transactions</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-md shadow p-3 mt-5 bg-body rounded">
+
+        <div class="row">
+
+            <div class="col-5 ">
+                <img src='/CustomerDetails/user.png' style=" width: 70%;">
+            </div>
+            <div class="col-7">
+
+                <div class="row my-3">
+                    <div class="col-3">Name :</div>
+                    <div class="col"><%= customer.name %> </div>
+                </div>
+                <div class="row my-3">
+                    <div class="col-3">Acc. Number :</div>
+                    <div class="col"><%= customer.acc_no %></div>
+                </div>
+                <div class="row my-3">
+                    <div class="col-3">Email :</div>
+                    <div class="col"><%= customer.email %></div>
+                </div>
+                <div class="row my-3">
+                    <div class="col-3">Balance :</div>
+                    <div class="col">INR <%= customer.balance %></div>
+                </div>
+                
+                <div class="border border-success my-5 rounded-3 bg-success text-white text-center shadow p-2" >
+                    
+                    <a href="/transferfunds/<%=customer._id %> " class="text-white" style="text-decoration: none; display: block;">Transfer Funds </a>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+    
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+</body>
+</html>
