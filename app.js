@@ -1,6 +1,3 @@
-if(process.env.NODE_ENV!=="production"){
-    require('dotenv').config();
-}
 const express=require("express");
 const app=express();
 const path= require('path');
@@ -9,8 +6,7 @@ const Customer=require('./models/customers');
 const Transaction=require('./models/transactions');
 const methodOverride=require('method-override');
 const appError=require('./utilities/ErrorHandling')
-const dotenv = require('dotenv');
-const dbUrl=process.env.db_url || 'mongodb://localhost:27017/Spark-Bank';
+const dbUrl='mongodb://localhost:27017/Spark-Bank';
 // 'mongodb://localhost:27017/Spark-Bank'
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
@@ -108,7 +104,7 @@ app.use((err, req, res, next)=>{
     res.send("<h1> &#9888; Something Went Wrong !!!</h1>");
 })
 
-const port= process.env.PORT || 8000;
+const port= 8000;
 
 app.listen(port, ()=>{
     console.log("Its Live");
